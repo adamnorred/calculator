@@ -1,6 +1,6 @@
-const userFirstNum = prompt("first num");
+const userFirstNum = Number(prompt("first num"));
+const userSecondNum = Number(prompt("second num"));
 const userOperator = prompt("operator");
-const userSecondNum = prompt("second num");
 
 function add(firstNum, secondNum) {
   return firstNum + secondNum;
@@ -32,9 +32,3 @@ function operator(firstNum, secondNum, operator) {
     return divide(firstNum, secondNum);
   }
 }
-
-console.log(operator(userFirstNum, userSecondNum, userOperator));
-console.log(operator(userFirstNum, userSecondNum, userOperator));
-console.log(operator(userFirstNum, userSecondNum, userOperator));
-console.log(operator(userFirstNum, userSecondNum, userOperator));
-console.log(operator(userFirstNum, userSecondNum, userOperator));
