@@ -17,13 +17,14 @@ const clear = document.querySelector(".clear");
 const backspace = document.querySelector(".backspace");
 const percent = document.querySelector(".percent");
 const division = document.querySelector(".division");
-const times = document.querySelector(".times");
+const multiplication = document.querySelector(".multiplication");
 const minus = document.querySelector(".minus");
 const plus = document.querySelector(".plus");
 const plusMinus = document.querySelector(".plus-minus");
 const zero = document.querySelector(".zero");
 const dot = document.querySelector(".dot");
 const equals = document.querySelector(".equals");
+const regex = /[+\-*\/]/;
 
 function add(firstNum, secondNum) {
   return firstNum + secondNum;
@@ -56,40 +57,26 @@ function operator(firstNum, secondNum, operator) {
   }
 }
 
-one.addEventListener("click", function () {
+function handleNumberClick() {
   inputField.textContent += this.textContent;
   mathOperations.textContent += this.textContent;
-});
+}
 
-two.addEventListener("click", function () {
-  inputField.textContent += this.textContent;
-  mathOperations.textContent += this.textContent;
-});
-
-plus.addEventListener("click", function () {
-  if (
-    mathOperations.textContent.includes(plus.textContent) ||
-    mathOperations.textContent.includes(minus.textContent) ||
-    mathOperations.textContent.includes(times.textContent) ||
-    mathOperations.textContent.includes(division.textContent)
-  ) {
+function handleOperatorClick() {
+  if (regex.test(mathOperations.textContent)) {
     mathOperations.textContent =
-      mathOperations.textContent.slice(0, -1) + `${this.textContent}`;
+      mathOperations.textContent.slice(0, -2) + `${this.textContent} `;
+    inputField.textContent = "";
   } else {
-    mathOperations.textContent += ` ${this.textContent}`;
+    mathOperations.textContent += ` ${this.textContent} `;
+    inputField.textContent = "";
   }
-});
+}
 
-minus.addEventListener("click", function () {
-  if (
-    mathOperations.textContent.includes(plus.textContent) ||
-    mathOperations.textContent.includes(minus.textContent) ||
-    mathOperations.textContent.includes(times.textContent) ||
-    mathOperations.textContent.includes(division.textContent)
-  ) {
-    mathOperations.textContent =
-      mathOperations.textContent.slice(0, -1) + `${this.textContent}`;
-  } else {
-    mathOperations.textContent += ` ${this.textContent}`;
-  }
-});
+plus.addEventListener("click", handleOperatorClick);
+minus.addEventListener("click", handleOperatorClick);
+multiplication.addEventListener("click", handleOperatorClick);
+division.addEventListener("click", handleOperatorClick);
+
+one.addEventListener("click", handleNumberClick);
+two.addEventListener("click", handleNumberClick);
