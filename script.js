@@ -62,7 +62,6 @@ function handleNumberClick() {
     inputField.textContent += this.textContent;
     return;
   }
-  // inputField.textContent += this.textContent;
   mathOperations.textContent += this.textContent;
 }
 
@@ -90,10 +89,10 @@ function handleOperatorClick() {
     userSecondNumber = 0;
     userTempNumber = 0;
     clearInputField();
-    mathOperations.textContent = userFirstNumber + ` ${this.textContent}`;
+    mathOperations.textContent = userFirstNumber + ` ${this.textContent} `;
   } else if (regex.test(mathOperations.textContent)) {
     mathOperations.textContent =
-      mathOperations.textContent.slice(0, -2) + `${this.textContent} `;
+      mathOperations.textContent.slice(0, -3) + ` ${this.textContent} `;
     getFirstNumber();
     clearInputField();
   } else {
