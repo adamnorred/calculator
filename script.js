@@ -69,8 +69,39 @@ function clearInputField() {
   inputField.textContent = "";
 }
 
+// function handleNumberClick() {
+//   if (regex.test(mathOperations.textContent)) {
+//     inputField.textContent += this.textContent;
+//     return;
+//   }
+//   mathOperations.textContent += this.textContent;
+// }
+
+// function handleOperatorClick() {
+//   if (mathOperations.textContent.includes(this.textContent)) {
+//     getSecondNumber();
+//     userTempNumber = operator(
+//       userFirstNumber,
+//       userSecondNumber,
+//       this.textContent
+//     );
+//     userFirstNumber = userTempNumber;
+//     userSecondNumber = 0;
+//     userTempNumber = 0;
+//     clearInputField();
+//     mathOperations.textContent = userFirstNumber + ` ${this.textContent} `;
+//   } else if (regex.test(mathOperations.textContent)) {
+//     mathOperations.textContent =
+//       mathOperations.textContent.slice(0, -3) + ` ${this.textContent} `;
+//     getFirstNumber();
+//   } else {
+//     mathOperations.textContent += ` ${this.textContent} `;
+//     getFirstNumber();
+//   }
+// }
+
 function handleNumberClick() {
-  if (regex.test(mathOperations.textContent)) {
+  if (regex.test(mathOperations.textContent.split(" ")[1])) {
     inputField.textContent += this.textContent;
     return;
   }
@@ -78,7 +109,7 @@ function handleNumberClick() {
 }
 
 function handleOperatorClick() {
-  if (mathOperations.textContent.includes(this.textContent)) {
+  if (regex.test(mathOperations.textContent.split(" ")[1])) {
     getSecondNumber();
     userTempNumber = operator(
       userFirstNumber,
@@ -90,7 +121,7 @@ function handleOperatorClick() {
     userTempNumber = 0;
     clearInputField();
     mathOperations.textContent = userFirstNumber + ` ${this.textContent} `;
-  } else if (regex.test(mathOperations.textContent)) {
+  } else if (regex.test(mathOperations.textContent.split(" ")[1])) {
     mathOperations.textContent =
       mathOperations.textContent.slice(0, -3) + ` ${this.textContent} `;
     getFirstNumber();
