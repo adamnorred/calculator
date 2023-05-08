@@ -26,6 +26,14 @@ let userFirstNumber = 0;
 let userSecondNumber = 0;
 let userTempNumber = 0;
 
+function clearScreen() {
+  userFirstNumber = 0;
+  userSecondNumber = 0;
+  userTempNumber = 0;
+  mathOperations.textContent = "";
+  inputField.textContent = "";
+}
+
 function add(firstNum, secondNum) {
   return firstNum + secondNum;
 }
@@ -121,3 +129,5 @@ six.addEventListener("click", handleNumberClick);
 seven.addEventListener("click", handleNumberClick);
 eight.addEventListener("click", handleNumberClick);
 nine.addEventListener("click", handleNumberClick);
+
+clear.addEventListener("click", clearScreen);
