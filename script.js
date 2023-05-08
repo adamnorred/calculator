@@ -79,6 +79,9 @@ function handleNumberClick() {
 
 function handleOperatorClick() {
   if (mathOperations.textContent.split(" ")[1] === this.textContent) {
+    if (inputField.textContent === "") {
+      return;
+    }
     getSecondNumber();
     userTempNumber = operator(
       userFirstNumber,
@@ -95,6 +98,9 @@ function handleOperatorClick() {
       mathOperations.textContent.slice(0, -3) + ` ${this.textContent} `;
     getFirstNumber();
   } else {
+    if (mathOperations.textContent === "") {
+      return;
+    }
     mathOperations.textContent += ` ${this.textContent} `;
     getFirstNumber();
   }
