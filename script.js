@@ -58,6 +58,10 @@ function operator(firstNum, secondNum, operator) {
 }
 
 function handleNumberClick() {
+  if (regex.test(mathOperations.textContent)) {
+    inputField.textContent += this.textContent;
+    return;
+  }
   inputField.textContent += this.textContent;
   mathOperations.textContent += this.textContent;
 }
