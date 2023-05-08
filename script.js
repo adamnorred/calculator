@@ -26,6 +26,16 @@ let userFirstNumber = 0;
 let userSecondNumber = 0;
 let userTempNumber = 0;
 
+function deleteLast() {
+  if (inputField.textContent) {
+    const splitInput = inputField.textContent.split("");
+    splitInput.pop();
+    let inputToString = splitInput.toString();
+    inputToString = inputToString.replace(/,/g, "");
+    inputField.textContent = inputToString;
+  }
+}
+
 function clearScreen() {
   userFirstNumber = 0;
   userSecondNumber = 0;
@@ -131,3 +141,4 @@ eight.addEventListener("click", handleNumberClick);
 nine.addEventListener("click", handleNumberClick);
 
 clear.addEventListener("click", clearScreen);
+backspace.addEventListener("click", deleteLast);
