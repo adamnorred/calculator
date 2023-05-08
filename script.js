@@ -57,14 +57,6 @@ function operator(firstNum, secondNum, operator) {
   }
 }
 
-function handleNumberClick() {
-  if (regex.test(mathOperations.textContent)) {
-    inputField.textContent += this.textContent;
-    return;
-  }
-  mathOperations.textContent += this.textContent;
-}
-
 function getFirstNumber() {
   userFirstNumber = Number(mathOperations.textContent.split(" ")[0]);
 }
@@ -75,6 +67,14 @@ function getSecondNumber() {
 
 function clearInputField() {
   inputField.textContent = "";
+}
+
+function handleNumberClick() {
+  if (regex.test(mathOperations.textContent)) {
+    inputField.textContent += this.textContent;
+    return;
+  }
+  mathOperations.textContent += this.textContent;
 }
 
 function handleOperatorClick() {
@@ -99,6 +99,8 @@ function handleOperatorClick() {
     getFirstNumber();
   }
 }
+
+// mathOperations.textContent.split(' ')[1]
 
 plus.addEventListener("click", handleOperatorClick);
 minus.addEventListener("click", handleOperatorClick);
