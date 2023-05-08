@@ -26,6 +26,10 @@ const dot = document.querySelector(".dot");
 const equals = document.querySelector(".equals");
 const regex = /[+\-*\/]/;
 
+let userFirstNumber = 0;
+let userSecondNumber = 0;
+let userTempNumber = 0;
+
 function add(firstNum, secondNum) {
   return firstNum + secondNum;
 }
@@ -66,14 +70,28 @@ function handleNumberClick() {
   mathOperations.textContent += this.textContent;
 }
 
+function getFirstNumber() {
+  userFirstNumber = Number(mathOperations.textContent.split(" ")[0]);
+}
+
+function getSecondNumber() {
+  userSecondNumber = Number(inputField.textContent);
+}
+
+function clearInputField() {
+  inputField.textContent = "";
+}
+
 function handleOperatorClick() {
   if (regex.test(mathOperations.textContent)) {
     mathOperations.textContent =
       mathOperations.textContent.slice(0, -2) + `${this.textContent} `;
-    inputField.textContent = "";
+    getFirstNumber();
+    clearInputField();
   } else {
     mathOperations.textContent += ` ${this.textContent} `;
-    inputField.textContent = "";
+    getFirstNumber();
+    clearInputField();
   }
 }
 
@@ -84,3 +102,5 @@ division.addEventListener("click", handleOperatorClick);
 
 one.addEventListener("click", handleNumberClick);
 two.addEventListener("click", handleNumberClick);
+three.addEventListener("click", handleNumberClick);
+four.addEventListener("click", handleNumberClick);
