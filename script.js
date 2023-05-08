@@ -26,24 +26,6 @@ let userFirstNumber = 0;
 let userSecondNumber = 0;
 let userTempNumber = 0;
 
-function deleteLast() {
-  if (inputField.textContent) {
-    const splitInput = inputField.textContent.split("");
-    splitInput.pop();
-    let inputToString = splitInput.toString();
-    inputToString = inputToString.replace(/,/g, "");
-    inputField.textContent = inputToString;
-  }
-}
-
-function clearScreen() {
-  userFirstNumber = 0;
-  userSecondNumber = 0;
-  userTempNumber = 0;
-  mathOperations.textContent = "";
-  inputField.textContent = "";
-}
-
 function add(firstNum, secondNum) {
   return firstNum + secondNum;
 }
@@ -75,16 +57,42 @@ function operator(firstNum, secondNum, operator) {
   }
 }
 
+function deleteLast() {
+  if (inputField.textContent) {
+    const splitInput = inputField.textContent.split("");
+    splitInput.pop();
+    let inputToString = splitInput.toString();
+    inputToString = inputToString.replace(/,/g, "");
+    inputField.textContent = inputToString;
+  }
+}
+
+function clearInputField() {
+  inputField.textContent = "";
+}
+
+function clearMathOperations() {
+  mathOperations.textContent = "";
+}
+
+function resetUserInputs() {
+  userFirstNumber = 0;
+  userSecondNumber = 0;
+  userTempNumber = 0;
+}
+
+function clearScreen() {
+  resetUserInputs();
+  clearMathOperations();
+  clearInputField();
+}
+
 function getFirstNumber() {
   userFirstNumber = Number(mathOperations.textContent.split(" ")[0]);
 }
 
 function getSecondNumber() {
   userSecondNumber = Number(inputField.textContent);
-}
-
-function clearInputField() {
-  inputField.textContent = "";
 }
 
 function handleNumberClick() {
