@@ -94,11 +94,9 @@ function handleOperatorClick() {
     mathOperations.textContent =
       mathOperations.textContent.slice(0, -3) + ` ${this.textContent} `;
     getFirstNumber();
-    clearInputField();
   } else {
     mathOperations.textContent += ` ${this.textContent} `;
     getFirstNumber();
-    clearInputField();
   }
 }
 
@@ -107,7 +105,13 @@ minus.addEventListener("click", handleOperatorClick);
 multiplication.addEventListener("click", handleOperatorClick);
 division.addEventListener("click", handleOperatorClick);
 
+zero.addEventListener("click", handleNumberClick);
 one.addEventListener("click", handleNumberClick);
 two.addEventListener("click", handleNumberClick);
 three.addEventListener("click", handleNumberClick);
 four.addEventListener("click", handleNumberClick);
+five.addEventListener("click", handleNumberClick);
+six.addEventListener("click", handleNumberClick);
+seven.addEventListener("click", handleNumberClick);
+eight.addEventListener("click", handleNumberClick);
+nine.addEventListener("click", handleNumberClick);
