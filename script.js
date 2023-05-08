@@ -1,12 +1,8 @@
-// const userFirstNum = Number(prompt("first num"));
-// const userSecondNum = Number(prompt("second num"));
-// const userOperator = prompt("operator");
-
 const mathOperations = document.querySelector(".math-operations");
 const inputField = document.querySelector(".input-field");
 const one = document.querySelector(".one");
 const two = document.querySelector(".two");
-const three = document.querySelector("three");
+const three = document.querySelector(".three");
 const four = document.querySelector(".four");
 const five = document.querySelector(".five");
 const six = document.querySelector(".six");
@@ -66,7 +62,7 @@ function handleNumberClick() {
     inputField.textContent += this.textContent;
     return;
   }
-  inputField.textContent += this.textContent;
+  // inputField.textContent += this.textContent;
   mathOperations.textContent += this.textContent;
 }
 
@@ -83,7 +79,19 @@ function clearInputField() {
 }
 
 function handleOperatorClick() {
-  if (regex.test(mathOperations.textContent)) {
+  if (mathOperations.textContent.includes(this.textContent)) {
+    getSecondNumber();
+    userTempNumber = operator(
+      userFirstNumber,
+      userSecondNumber,
+      this.textContent
+    );
+    userFirstNumber = userTempNumber;
+    userSecondNumber = 0;
+    userTempNumber = 0;
+    clearInputField();
+    mathOperations.textContent = userFirstNumber + ` ${this.textContent}`;
+  } else if (regex.test(mathOperations.textContent)) {
     mathOperations.textContent =
       mathOperations.textContent.slice(0, -2) + `${this.textContent} `;
     getFirstNumber();
