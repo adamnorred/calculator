@@ -59,13 +59,20 @@ function operator(firstNum, secondNum, operator) {
   }
 }
 
-function deleteLast() {
+function deleteLast(element) {
+  const splitInput = element.textContent.split("");
+  splitInput.pop();
+  let inputToString = splitInput.toString();
+  inputToString = inputToString.replace(/,/g, "");
+  element.textContent = inputToString;
+}
+
+function deleteLastHandler() {
   if (inputField.textContent) {
-    const splitInput = inputField.textContent.split("");
-    splitInput.pop();
-    let inputToString = splitInput.toString();
-    inputToString = inputToString.replace(/,/g, "");
-    inputField.textContent = inputToString;
+    deleteLast(inputField);
+  }
+  if (!regexForOperators.test(mathOperations.textContent.split(" ")[1])) {
+    deleteLast(mathOperations);
   }
 }
 
@@ -164,4 +171,4 @@ eight.addEventListener("click", handleNumberClick);
 nine.addEventListener("click", handleNumberClick);
 
 clear.addEventListener("click", clearScreen);
-backspace.addEventListener("click", deleteLast);
+backspace.addEventListener("click", deleteLastHandler);
