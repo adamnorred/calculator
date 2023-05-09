@@ -20,7 +20,9 @@ const percent = document.querySelector(".percent");
 const plusMinus = document.querySelector(".plus-minus");
 const dot = document.querySelector(".dot");
 const equals = document.querySelector(".equals");
-const regex = /[+\-*\/]/;
+
+const regexForOperators = /[+\-*\/]/;
+const regexForNumbers = /[0-9]/;
 
 let userFirstNumber = 0;
 let userSecondNumber = 0;
@@ -96,11 +98,24 @@ function getSecondNumber() {
 }
 
 function handleNumberClick() {
-  if (regex.test(mathOperations.textContent.split(" ")[1])) {
+  if (regexForOperators.test(mathOperations.textContent.split(" ")[1])) {
     inputField.textContent += this.textContent;
+    checkCharacterAfterZero(inputField);
     return;
   }
   mathOperations.textContent += this.textContent;
+  checkCharacterAfterZero(mathOperations);
+}
+
+function checkCharacterAfterZero(element) {
+  if (
+    element.textContent.length > 1 &&
+    element.textContent.charAt(0) === "0" &&
+    Number(element.textContent.charAt(1)) >= 0 &&
+    Number(element.textContent.charAt(1)) <= 9
+  ) {
+    element.textContent = element.textContent.charAt(1);
+  }
 }
 
 function handleOperatorClick() {
@@ -119,7 +134,7 @@ function handleOperatorClick() {
     userTempNumber = 0;
     clearInputField();
     mathOperations.textContent = userFirstNumber + ` ${this.textContent} `;
-  } else if (regex.test(mathOperations.textContent.split(" ")[1])) {
+  } else if (regexForOperators.test(mathOperations.textContent.split(" ")[1])) {
     mathOperations.textContent =
       mathOperations.textContent.slice(0, -3) + ` ${this.textContent} `;
     getFirstNumber();
