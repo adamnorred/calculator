@@ -146,7 +146,7 @@ function handleOperatorClick() {
       userFirstNumber,
       userSecondNumber,
       this.textContent
-    );
+    ).toFixed(2);
     userFirstNumber = userTempNumber;
     clearInputField();
     mathOperations.textContent = userFirstNumber + ` ${this.textContent} `;
@@ -171,7 +171,7 @@ function handleEqualsClick() {
       userFirstNumber,
       userSecondNumber,
       checkForOperatorPresence()
-    );
+    ).toFixed(2);
     clearInputField();
     mathOperations.textContent += `${userSecondNumber} ${this.textContent} ${userTempNumber}`;
     if (
@@ -216,11 +216,28 @@ function turnTwoMinusToPlus() {
   mathOperations.textContent = splitArray.join(" ");
 }
 
+function addDecimal() {
+  if (checkForOperatorPresence()) {
+    if (/\./.test(inputField.textContent)) {
+      return;
+    } else if (regexForNumbers.test(inputField.textContent)) {
+      inputField.textContent += ".";
+    }
+  } else {
+    if (/\./.test(mathOperations.textContent)) {
+      return;
+    } else if (regexForNumbers.test(mathOperations.textContent)) {
+      mathOperations.textContent += ".";
+    }
+  }
+}
+
 plus.addEventListener("click", handleOperatorClick);
 minus.addEventListener("click", handleOperatorClick);
 multiplication.addEventListener("click", handleOperatorClick);
 division.addEventListener("click", handleOperatorClick);
 
+dot.addEventListener("click", addDecimal);
 equals.addEventListener("click", handleEqualsClick);
 plusMinus.addEventListener("click", handlePlusMinus);
 
