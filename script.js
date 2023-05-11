@@ -59,23 +59,6 @@ function operator(firstNum, secondNum, operator) {
   }
 }
 
-function deleteLast(element) {
-  const splitInput = element.textContent.split("");
-  splitInput.pop();
-  let inputToString = splitInput.toString();
-  inputToString = inputToString.replace(/,/g, "");
-  element.textContent = inputToString;
-}
-
-function deleteLastHandler() {
-  if (inputField.textContent) {
-    deleteLast(inputField);
-  }
-  if (!regexForOperators.test(mathOperations.textContent.split(" ")[1])) {
-    deleteLast(mathOperations);
-  }
-}
-
 function clearInputField() {
   inputField.textContent = "";
 }
@@ -104,17 +87,8 @@ function getSecondNumber() {
   userSecondNumber = Number(inputField.textContent);
 }
 
-function handleNumberClick() {
-  if (checkForEquals()) {
-    return;
-  }
-  if (regexForOperators.test(mathOperations.textContent.split(" ")[1])) {
-    inputField.textContent += this.textContent;
-    checkCharacterAfterZero(inputField);
-    return;
-  }
-  mathOperations.textContent += this.textContent;
-  checkCharacterAfterZero(mathOperations);
+function checkForOperatorPresence() {
+  return mathOperations.textContent.split(" ")[1];
 }
 
 function checkCharacterAfterZero(element) {
@@ -128,11 +102,41 @@ function checkCharacterAfterZero(element) {
   }
 }
 
-function handleOperatorClick() {
-  if (checkForEquals()) {
+function deleteLast(element) {
+  const splitInput = element.textContent.split("");
+  splitInput.pop();
+  let inputToString = splitInput.toString();
+  inputToString = inputToString.replace(/,/g, "");
+  element.textContent = inputToString;
+}
+
+function deleteLastHandler() {
+  if (inputField.textContent) {
+    deleteLast(inputField);
+  }
+  if (!regexForOperators.test(checkForOperatorPresence())) {
+    deleteLast(mathOperations);
+  }
+}
+
+function handleNumberClick() {
+  if (checkForEqualsPresence()) {
     return;
   }
-  if (mathOperations.textContent.split(" ")[1] === this.textContent) {
+  if (regexForOperators.test(checkForOperatorPresence())) {
+    inputField.textContent += this.textContent;
+    checkCharacterAfterZero(inputField);
+    return;
+  }
+  mathOperations.textContent += this.textContent;
+  checkCharacterAfterZero(mathOperations);
+}
+
+function handleOperatorClick() {
+  if (checkForEqualsPresence()) {
+    return;
+  }
+  if (checkForOperatorPresence() === this.textContent) {
     if (inputField.textContent === "") {
       return;
     }
@@ -145,7 +149,7 @@ function handleOperatorClick() {
     userFirstNumber = userTempNumber;
     clearInputField();
     mathOperations.textContent = userFirstNumber + ` ${this.textContent} `;
-  } else if (regexForOperators.test(mathOperations.textContent.split(" ")[1])) {
+  } else if (regexForOperators.test(checkForOperatorPresence())) {
     mathOperations.textContent =
       mathOperations.textContent.slice(0, -3) + ` ${this.textContent} `;
     getFirstNumber();
@@ -159,28 +163,27 @@ function handleOperatorClick() {
 }
 
 function handleEqualsClick() {
-  if (
-    mathOperations.textContent.split(" ")[1] &&
-    inputField.textContent !== ""
-  ) {
+  if (checkForOperatorPresence() && inputField.textContent !== "") {
     getFirstNumber();
     getSecondNumber();
     userTempNumber = operator(
       userFirstNumber,
       userSecondNumber,
-      mathOperations.textContent.split(" ")[1]
+      checkForOperatorPresence()
     );
     clearInputField();
     mathOperations.textContent += `${userSecondNumber} ${this.textContent} ${userTempNumber}`;
   }
 }
 
-function checkForEquals() {
+function checkForEqualsPresence() {
   if (/=/g.test(mathOperations.textContent)) {
     return true;
   }
   return false;
 }
+
+function handlePlusMinus() {}
 
 plus.addEventListener("click", handleOperatorClick);
 minus.addEventListener("click", handleOperatorClick);
@@ -188,6 +191,7 @@ multiplication.addEventListener("click", handleOperatorClick);
 division.addEventListener("click", handleOperatorClick);
 
 equals.addEventListener("click", handleEqualsClick);
+plusMinus.addEventListener("click", handlePlusMinus);
 
 zero.addEventListener("click", handleNumberClick);
 one.addEventListener("click", handleNumberClick);
