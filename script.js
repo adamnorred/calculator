@@ -134,6 +134,7 @@ function handleNumberClick() {
 
 function handleOperatorClick() {
   if (checkForEqualsPresence()) {
+    mathOperations.textContent = `${userTempNumber} ${this.textContent} `;
     return;
   }
   if (checkForOperatorPresence() === this.textContent) {
