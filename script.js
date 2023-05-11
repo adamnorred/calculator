@@ -105,6 +105,9 @@ function getSecondNumber() {
 }
 
 function handleNumberClick() {
+  if (checkForEquals()) {
+    return;
+  }
   if (regexForOperators.test(mathOperations.textContent.split(" ")[1])) {
     inputField.textContent += this.textContent;
     checkCharacterAfterZero(inputField);
@@ -126,6 +129,9 @@ function checkCharacterAfterZero(element) {
 }
 
 function handleOperatorClick() {
+  if (checkForEquals()) {
+    return;
+  }
   if (mathOperations.textContent.split(" ")[1] === this.textContent) {
     if (inputField.textContent === "") {
       return;
@@ -137,8 +143,6 @@ function handleOperatorClick() {
       this.textContent
     );
     userFirstNumber = userTempNumber;
-    userSecondNumber = 0;
-    userTempNumber = 0;
     clearInputField();
     mathOperations.textContent = userFirstNumber + ` ${this.textContent} `;
   } else if (regexForOperators.test(mathOperations.textContent.split(" ")[1])) {
@@ -154,10 +158,36 @@ function handleOperatorClick() {
   }
 }
 
+function handleEqualsClick() {
+  if (
+    mathOperations.textContent.split(" ")[1] &&
+    inputField.textContent !== ""
+  ) {
+    getFirstNumber();
+    getSecondNumber();
+    userTempNumber = operator(
+      userFirstNumber,
+      userSecondNumber,
+      mathOperations.textContent.split(" ")[1]
+    );
+    clearInputField();
+    mathOperations.textContent += `${userSecondNumber} ${this.textContent} ${userTempNumber}`;
+  }
+}
+
+function checkForEquals() {
+  if (/=/g.test(mathOperations.textContent)) {
+    return true;
+  }
+  return false;
+}
+
 plus.addEventListener("click", handleOperatorClick);
 minus.addEventListener("click", handleOperatorClick);
 multiplication.addEventListener("click", handleOperatorClick);
 division.addEventListener("click", handleOperatorClick);
+
+equals.addEventListener("click", handleEqualsClick);
 
 zero.addEventListener("click", handleNumberClick);
 one.addEventListener("click", handleNumberClick);
