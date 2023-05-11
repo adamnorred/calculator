@@ -173,6 +173,12 @@ function handleEqualsClick() {
     );
     clearInputField();
     mathOperations.textContent += `${userSecondNumber} ${this.textContent} ${userTempNumber}`;
+    if (
+      mathOperations.textContent.split(" ")[1] === "-" &&
+      mathOperations.textContent.split(" ")[2].charAt(0) === "-"
+    ) {
+      turnTwoMinusToPlus();
+    }
   }
 }
 
@@ -200,6 +206,13 @@ function handlePlusMinus() {
       mathOperations.textContent = "-" + mathOperations.textContent;
     }
   }
+}
+
+function turnTwoMinusToPlus() {
+  const splitArray = mathOperations.textContent.split(" ");
+  splitArray[2] = splitArray[2].substring(1);
+  splitArray[1] = "+";
+  mathOperations.textContent = splitArray.join(" ");
 }
 
 plus.addEventListener("click", handleOperatorClick);
