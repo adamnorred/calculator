@@ -183,7 +183,24 @@ function checkForEqualsPresence() {
   return false;
 }
 
-function handlePlusMinus() {}
+function handlePlusMinus() {
+  if (checkForEqualsPresence()) {
+    return;
+  }
+  if (checkForOperatorPresence()) {
+    if (/-/.test(inputField.textContent)) {
+      inputField.textContent = inputField.textContent.substring(1);
+    } else {
+      inputField.textContent = "-" + inputField.textContent;
+    }
+  } else {
+    if (mathOperations.textContent.charAt(0) === "-") {
+      mathOperations.textContent = mathOperations.textContent.substring(1);
+    } else {
+      mathOperations.textContent = "-" + mathOperations.textContent;
+    }
+  }
+}
 
 plus.addEventListener("click", handleOperatorClick);
 minus.addEventListener("click", handleOperatorClick);
