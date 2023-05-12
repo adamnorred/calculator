@@ -3,6 +3,7 @@
 Technlogies used:
 
 CSS(flexbox)
+
 JS(vanilla)
 
 Calculator always rounds to 2 decimal places.
