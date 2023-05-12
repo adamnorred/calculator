@@ -116,15 +116,25 @@ function checkForOperatorPresence() {
 }
 
 function checkCharacterAfterZero(element) {
-  if (element.textContent.length > 1 && element.textContent.charAt(0) === "0") {
+  if (element.textContent === "00") {
+    element.textContent = "0";
+    return;
+  }
+  if (
+    element.textContent.charAt(0) === "0" &&
+    element.textContent.charAt(1) !== "." &&
+    element.textContent.length > 1
+  ) {
     element.textContent = element.textContent.charAt(1);
   }
   if (
-    element.textContent.length > 2 &&
     element.textContent.charAt(0) === "-" &&
-    element.textContent.charAt(1) === "0"
+    element.textContent.charAt(1) === "0" &&
+    element.textContent.charAt(2) !== "." &&
+    element.textContent.length > 2
   ) {
-    element.textContent = "-" + element.textContent.charAt(2);
+    element.textContent =
+      element.textContent.charAt(0) + element.textContent.charAt(2);
   }
 }
 
