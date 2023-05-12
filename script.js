@@ -123,6 +123,9 @@ function handleNumberClick() {
   if (checkForEqualsPresence()) {
     return;
   }
+  if (/%/.test(inputField.textContent)) {
+    return;
+  }
   if (regexForOperators.test(checkForOperatorPresence())) {
     inputField.textContent += this.textContent;
     checkCharacterAfterZero(inputField);
@@ -221,13 +224,29 @@ function addDecimal() {
     if (/\./.test(inputField.textContent)) {
       return;
     } else if (regexForNumbers.test(inputField.textContent)) {
-      inputField.textContent += ".";
+      inputField.textContent += this.textContent;
     }
   } else {
     if (/\./.test(mathOperations.textContent)) {
       return;
     } else if (regexForNumbers.test(mathOperations.textContent)) {
-      mathOperations.textContent += ".";
+      mathOperations.textContent += this.textContent;
+    }
+  }
+}
+
+function addPercent() {
+  if (checkForEqualsPresence()) {
+    return;
+  }
+  if (
+    (checkForOperatorPresence() &&
+      inputField.textContent.charAt(0) === "-" &&
+      /[0-9]/.test(inputField.textContent)) ||
+    (checkForOperatorPresence() && /[0-9]/.test(inputField.textContent))
+  ) {
+    if (!/%/.test(inputField.textContent)) {
+      inputField.textContent += this.textContent;
     }
   }
 }
@@ -240,6 +259,7 @@ division.addEventListener("click", handleOperatorClick);
 dot.addEventListener("click", addDecimal);
 equals.addEventListener("click", handleEqualsClick);
 plusMinus.addEventListener("click", handlePlusMinus);
+percent.addEventListener("click", addPercent);
 
 zero.addEventListener("click", handleNumberClick);
 one.addEventListener("click", handleNumberClick);
@@ -254,3 +274,12 @@ nine.addEventListener("click", handleNumberClick);
 
 clear.addEventListener("click", clearScreen);
 backspace.addEventListener("click", deleteLastHandler);
+
+// TODO
+/*
+- turn plus and minus into minus
+- convert percent into number
+- handle percent in equals function
+- handle percent in operators function
+
+*/
