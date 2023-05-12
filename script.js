@@ -116,13 +116,15 @@ function checkForOperatorPresence() {
 }
 
 function checkCharacterAfterZero(element) {
-  if (
-    element.textContent.length > 1 &&
-    element.textContent.charAt(0) === "0" &&
-    Number(element.textContent.charAt(1)) >= 0 &&
-    Number(element.textContent.charAt(1)) <= 9
-  ) {
+  if (element.textContent.length > 1 && element.textContent.charAt(0) === "0") {
     element.textContent = element.textContent.charAt(1);
+  }
+  if (
+    element.textContent.length > 2 &&
+    element.textContent.charAt(0) === "-" &&
+    element.textContent.charAt(1) === "0"
+  ) {
+    element.textContent = "-" + element.textContent.charAt(2);
   }
 }
 
@@ -160,6 +162,12 @@ function handleNumberClick() {
 }
 
 function handleOperatorClick() {
+  if (
+    mathOperations.textContent.charAt(mathOperations.textContent.length - 1) ===
+    "."
+  ) {
+    return;
+  }
   if (checkForEqualsPresence()) {
     mathOperations.textContent = `${userTempNumber} ${this.textContent} `;
     return;
@@ -310,12 +318,3 @@ nine.addEventListener("click", handleNumberClick);
 
 clear.addEventListener("click", clearScreen);
 backspace.addEventListener("click", deleteLastHandler);
-
-// TODO
-/*
-- turn plus and minus into minus
-- convert percent into number
-- handle percent in equals function
-- handle percent in operators function
-
-*/
