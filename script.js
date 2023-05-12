@@ -27,6 +27,7 @@ const regexForNumbers = /[0-9]/;
 let userFirstNumber = 0;
 let userSecondNumber = 0;
 let userTempNumber = 0;
+let userPercentForTextContent = "";
 
 function add(firstNum, secondNum) {
   return firstNum + secondNum;
@@ -79,11 +80,34 @@ function clearScreen() {
   clearInputField();
 }
 
+function checkForPercent() {
+  if (/%/.test(inputField.textContent)) {
+    return true;
+  }
+}
+
 function getFirstNumber() {
   userFirstNumber = Number(mathOperations.textContent.split(" ")[0]);
 }
 
 function getSecondNumber() {
+  if (
+    /%/.test(inputField.textContent) &&
+    (checkForOperatorPresence() === "*" || checkForOperatorPresence() === "/")
+  ) {
+    userPercentForTextContent = inputField.textContent;
+    userSecondNumber = Number(inputField.textContent.slice(0, -1)) / 100;
+    return;
+  }
+  if (
+    /%/.test(inputField.textContent) &&
+    (checkForOperatorPresence() === "+" || checkForOperatorPresence() === "-")
+  ) {
+    userPercentForTextContent = inputField.textContent;
+    userSecondNumber =
+      (Number(inputField.textContent.slice(0, -1)) / 100) * userFirstNumber;
+    return;
+  }
   userSecondNumber = Number(inputField.textContent);
 }
 
@@ -175,8 +199,12 @@ function handleEqualsClick() {
       userSecondNumber,
       checkForOperatorPresence()
     ).toFixed(2);
+    if (/%/.test(inputField.textContent)) {
+      mathOperations.textContent += `${userPercentForTextContent} ${this.textContent} ${userTempNumber}`;
+    } else {
+      mathOperations.textContent += `${userSecondNumber} ${this.textContent} ${userTempNumber}`;
+    }
     clearInputField();
-    mathOperations.textContent += `${userSecondNumber} ${this.textContent} ${userTempNumber}`;
     if (
       mathOperations.textContent.split(" ")[1] === "-" &&
       mathOperations.textContent.split(" ")[2].charAt(0) === "-"
@@ -220,6 +248,9 @@ function turnTwoMinusToPlus() {
 }
 
 function addDecimal() {
+  if (checkForPercent()) {
+    return;
+  }
   if (checkForOperatorPresence()) {
     if (/\./.test(inputField.textContent)) {
       return;
@@ -236,6 +267,11 @@ function addDecimal() {
 }
 
 function addPercent() {
+  if (
+    inputField.textContent.charAt(inputField.textContent.length - 1) === "."
+  ) {
+    return;
+  }
   if (checkForEqualsPresence()) {
     return;
   }
