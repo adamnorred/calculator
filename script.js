@@ -328,3 +328,7 @@ nine.addEventListener("click", handleNumberClick);
 
 clear.addEventListener("click", clearScreen);
 backspace.addEventListener("click", deleteLastHandler);
+
+// TODO
+// cant divide by 0
+// update CSS
