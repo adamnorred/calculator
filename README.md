@@ -2,13 +2,13 @@
 
 Technlogies used:
 
-CSS(flexbox)
+CSS (flexbox)
 
-JS(vanilla)
+JS (vanilla)
 
 Calculator always rounds to 2 decimal places.
 
-Main goals that I wanted to achieve:
+Main goals that I achieved:
 
 - implement things like minus and minus equals plus, can't divide by zero etc.
 - flexibility with calculator, which means a lot of functionality for user to work with

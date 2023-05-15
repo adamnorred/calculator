@@ -28,6 +28,7 @@ let userFirstNumber = 0;
 let userSecondNumber = 0;
 let userTempNumber = 0;
 let userPercentForTextContent = "";
+let slicedFixed = "";
 
 function add(firstNum, secondNum) {
   return firstNum + secondNum;

@@ -13,6 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: aliceblue;
 }
 
 .calculator-window {
@@ -23,7 +24,9 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: blueviolet;
+  background-color: darkgrey;
+  border: 3px solid black;
+  border-radius: 5px;
 }
 
 .operations-container {
@@ -33,6 +36,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color: azure;
+}
+
+.operations-container > div {
+  padding-right: 10px;
 }
 
 .buttons-container {
@@ -43,10 +53,12 @@ body {
 }
 
 .buttons-container > div {
-  background-color: coral;
+  background-color: azure;
   flex: 1;
   text-align: center;
   line-height: 50px;
+  border: 3px solid black;
+  border-radius: 5px;
 }
 
 .clear,
@@ -60,12 +72,9 @@ body {
 }
 
 main * {
-  transition: all 0.09s ease;
+  transition: all 0.07s ease;
 }
 
 .trs {
   transform: scale(0.9);
-  background-color: yellow;
-  color: white;
-  border-color: black;
 }
