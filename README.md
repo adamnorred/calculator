@@ -2,7 +2,7 @@
 
 Live site: https://adamnorred.github.io/calculator/
 
-Technlogies used:
+Technologies used:
 
 CSS (flexbox)
 
