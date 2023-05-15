@@ -58,3 +58,14 @@ body {
 .division {
   font-size: 1.1rem;
 }
+
+main * {
+  transition: all 0.09s ease;
+}
+
+.trs {
+  transform: scale(0.9);
+  background-color: yellow;
+  color: white;
+  border-color: black;
+}

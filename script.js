@@ -75,6 +75,7 @@ function resetUserInputs() {
 }
 
 function clearScreen() {
+  this.classList.add("trs");
   resetUserInputs();
   clearMathOperations();
   clearInputField();
@@ -147,6 +148,7 @@ function deleteLast(element) {
 }
 
 function deleteLastHandler() {
+  this.classList.add("trs");
   if (mathOperations.textContent === "undefined") {
     mathOperations.textContent = "";
     return;
@@ -160,6 +162,7 @@ function deleteLastHandler() {
 }
 
 function handleNumberClick() {
+  this.classList.add("trs");
   if (mathOperations.textContent === "undefined") {
     mathOperations.textContent = this.textContent;
     return;
@@ -180,6 +183,7 @@ function handleNumberClick() {
 }
 
 function handleOperatorClick() {
+  this.classList.add("trs");
   if (mathOperations.textContent === "undefined") {
     return;
   }
@@ -228,6 +232,7 @@ function handleOperatorClick() {
 }
 
 function handleEqualsClick() {
+  this.classList.add("trs");
   if (inputField.textContent === "0" || inputField.textContent === "-0") {
     clearInputField();
     mathOperations.textContent = "undefined";
@@ -264,6 +269,7 @@ function checkForEqualsPresence() {
 }
 
 function handlePlusMinus() {
+  this.classList.add("trs");
   if (mathOperations.textContent === "undefined") {
     return;
   }
@@ -293,6 +299,7 @@ function turnTwoMinusToPlus() {
 }
 
 function addDecimal() {
+  this.classList.add("trs");
   if (checkForPercent()) {
     return;
   }
@@ -312,6 +319,7 @@ function addDecimal() {
 }
 
 function addPercent() {
+  this.classList.add("trs");
   if (
     inputField.textContent.charAt(inputField.textContent.length - 1) === "."
   ) {
@@ -330,6 +338,10 @@ function addPercent() {
       inputField.textContent += this.textContent;
     }
   }
+}
+
+function resetTransition() {
+  this.classList.remove("trs");
 }
 
 plus.addEventListener("click", handleOperatorClick);
@@ -355,3 +367,24 @@ nine.addEventListener("click", handleNumberClick);
 
 clear.addEventListener("click", clearScreen);
 backspace.addEventListener("click", deleteLastHandler);
+
+plus.addEventListener("transitionend", resetTransition);
+minus.addEventListener("transitionend", resetTransition);
+multiplication.addEventListener("transitionend", resetTransition);
+division.addEventListener("transitionend", resetTransition);
+dot.addEventListener("transitionend", resetTransition);
+equals.addEventListener("transitionend", resetTransition);
+plusMinus.addEventListener("transitionend", resetTransition);
+percent.addEventListener("transitionend", resetTransition);
+zero.addEventListener("transitionend", resetTransition);
+one.addEventListener("transitionend", resetTransition);
+two.addEventListener("transitionend", resetTransition);
+three.addEventListener("transitionend", resetTransition);
+four.addEventListener("transitionend", resetTransition);
+five.addEventListener("transitionend", resetTransition);
+six.addEventListener("transitionend", resetTransition);
+seven.addEventListener("transitionend", resetTransition);
+eight.addEventListener("transitionend", resetTransition);
+nine.addEventListener("transitionend", resetTransition);
+clear.addEventListener("transitionend", resetTransition);
+backspace.addEventListener("transitionend", resetTransition);
