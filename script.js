@@ -147,6 +147,10 @@ function deleteLast(element) {
 }
 
 function deleteLastHandler() {
+  if (mathOperations.textContent === "undefined") {
+    mathOperations.textContent = "";
+    return;
+  }
   if (inputField.textContent) {
     deleteLast(inputField);
   }
@@ -156,6 +160,10 @@ function deleteLastHandler() {
 }
 
 function handleNumberClick() {
+  if (mathOperations.textContent === "undefined") {
+    mathOperations.textContent = this.textContent;
+    return;
+  }
   if (checkForEqualsPresence()) {
     return;
   }
@@ -172,6 +180,17 @@ function handleNumberClick() {
 }
 
 function handleOperatorClick() {
+  if (mathOperations.textContent === "undefined") {
+    return;
+  }
+  if (
+    (inputField.textContent === "0" || inputField.textContent === "-0") &&
+    mathOperations.textContent.split(" ")[1] === "/"
+  ) {
+    clearInputField();
+    mathOperations.textContent = "undefined";
+    return;
+  }
   if (
     mathOperations.textContent.charAt(mathOperations.textContent.length - 1) ===
     "."
@@ -209,6 +228,11 @@ function handleOperatorClick() {
 }
 
 function handleEqualsClick() {
+  if (inputField.textContent === "0" || inputField.textContent === "-0") {
+    clearInputField();
+    mathOperations.textContent = "undefined";
+    return;
+  }
   if (checkForOperatorPresence() && inputField.textContent !== "") {
     getFirstNumber();
     getSecondNumber();
@@ -240,6 +264,9 @@ function checkForEqualsPresence() {
 }
 
 function handlePlusMinus() {
+  if (mathOperations.textContent === "undefined") {
+    return;
+  }
   if (checkForEqualsPresence()) {
     return;
   }
