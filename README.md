@@ -1,5 +1,7 @@
 # calculator
 
+Live site: https://adamnorred.github.io/calculator/
+
 Technlogies used:
 
 CSS (flexbox)

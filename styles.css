@@ -38,11 +38,12 @@ body {
   align-items: flex-end;
   border: 3px solid black;
   border-radius: 5px;
-  background-color: azure;
+  background-color: darkseagreen;
 }
 
 .operations-container > div {
   padding-right: 10px;
+  padding-top: 2px;
 }
 
 .buttons-container {
@@ -65,6 +66,14 @@ body {
 .backspace,
 .percent {
   font-size: 0.8rem;
+}
+
+.clear {
+  background-color: crimson !important;
+}
+
+.backspace {
+  background-color: cadetblue !important;
 }
 
 .division {
