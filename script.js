@@ -216,6 +216,10 @@ function handleOperatorClick() {
       userSecondNumber,
       this.textContent
     ).toFixed(2);
+    slicedFixed = userTempNumber.toString();
+    if (slicedFixed.slice(-3) === ".00") {
+      userTempNumber = slicedFixed.split(".")[0];
+    }
     userFirstNumber = userTempNumber;
     clearInputField();
     mathOperations.textContent = userFirstNumber + ` ${this.textContent} `;
@@ -247,6 +251,10 @@ function handleEqualsClick() {
       userSecondNumber,
       checkForOperatorPresence()
     ).toFixed(2);
+    slicedFixed = userTempNumber.toString();
+    if (slicedFixed.slice(-3) === ".00") {
+      userTempNumber = slicedFixed.split(".")[0];
+    }
     if (/%/.test(inputField.textContent)) {
       mathOperations.textContent += `${userPercentForTextContent} ${this.textContent} ${userTempNumber}`;
     } else {

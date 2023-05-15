@@ -6,7 +6,7 @@ CSS (flexbox)
 
 JS (vanilla)
 
-Calculator always rounds to 2 decimal places.
+Calculator always rounds to 2 decimal places and simplifies outcome i.e. if there is 0.0066 it will round to 0.01. Used method 'toFixed' to avoid flooding screen, since it is project for training.
 
 Main goals that I achieved:
 
