@@ -188,6 +188,21 @@ function handleOperatorClick() {
   if (mathOperations.textContent === "undefined") {
     return;
   }
+  if (inputField.textContent.slice(-1) === ".") {
+    return;
+  }
+  if (
+    (inputField.textContent.charAt(0) === "0" ||
+      (inputField.textContent.charAt(0) === "-" &&
+        inputField.textContent.charAt(1) === "0")) &&
+    inputField.textContent.includes(".") &&
+    !/[1-9]/.test(inputField.textContent) &&
+    mathOperations.textContent.split(" ")[1] === "/"
+  ) {
+    clearInputField();
+    mathOperations.textContent = "undefined";
+    return;
+  }
   if (
     (inputField.textContent === "0" || inputField.textContent === "-0") &&
     mathOperations.textContent.split(" ")[1] === "/"
@@ -238,6 +253,21 @@ function handleOperatorClick() {
 
 function handleEqualsClick() {
   this.classList.add("trs");
+  if (inputField.textContent.slice(-1) === ".") {
+    return;
+  }
+  if (
+    (inputField.textContent.charAt(0) === "0" ||
+      (inputField.textContent.charAt(0) === "-" &&
+        inputField.textContent.charAt(1) === "0")) &&
+    inputField.textContent.includes(".") &&
+    !/[1-9]/.test(inputField.textContent) &&
+    mathOperations.textContent.split(" ")[1] === "/"
+  ) {
+    clearInputField();
+    mathOperations.textContent = "undefined";
+    return;
+  }
   if (
     (inputField.textContent === "0" || inputField.textContent === "-0") &&
     mathOperations.textContent.split(" ")[1] === "/"
