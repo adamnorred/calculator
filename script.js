@@ -238,7 +238,10 @@ function handleOperatorClick() {
 
 function handleEqualsClick() {
   this.classList.add("trs");
-  if (inputField.textContent === "0" || inputField.textContent === "-0") {
+  if (
+    (inputField.textContent === "0" || inputField.textContent === "-0") &&
+    mathOperations.textContent.split(" ")[1] === "/"
+  ) {
     clearInputField();
     mathOperations.textContent = "undefined";
     return;
